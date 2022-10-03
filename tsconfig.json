@@ -1,0 +1,19 @@
+{
+  "include": ["src/**/*.ts", "src/**/*.vue"],
+  "compilerOptions": {
+    "strict": true,
+
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "preserveValueImports": true,
+    "skipLibCheck": true,
+
+    "jsx": "preserve",
+    "lib": ["esnext", "dom"],
+
+    "types": ["vite/client"]
+  }
+}
