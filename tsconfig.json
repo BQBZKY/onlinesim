@@ -14,6 +14,11 @@
     "jsx": "preserve",
     "lib": ["esnext", "dom"],
 
-    "types": ["vite/client", "vue/macros-global"]
+    "types": ["vite/client", "vue/macros-global"],
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   }
 }
