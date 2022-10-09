@@ -9,34 +9,11 @@ import {
   IonItem,
 } from '@ionic/vue'
 
-interface PhoneNumber {
-  phoneNumber: string
-  activatedAt: string
-}
+import usePhoneNumbersStore from '@/stores/free/phone-numbers'
 
-let phoneNumbers = $shallowRef<PhoneNumber[] | undefined>()
+const { phoneNumbers, loadPhoneNumbers } = $(usePhoneNumbersStore())
 
-async function fetchPhoneNumbers() {
-  type ResponseData = {
-    numbers: {
-      full_number: string
-      data_humans: string
-    }[]
-  }
-
-  const response = await fetch('https://onlinesim.ru/api/getFreePhoneList?lang=en')
-  const responseData = await response.json() as ResponseData
-
-  phoneNumbers = responseData.numbers.map(({
-    full_number,
-    data_humans,
-  }) => ({
-    phoneNumber: full_number,
-    activatedAt: data_humans,
-  }))
-}
-
-fetchPhoneNumbers()
+loadPhoneNumbers()
 </script>
 
 <template>
