@@ -1,5 +1,5 @@
-import {createApp} from 'vue'
-import {IonicVue as ionic} from '@ionic/vue'
+import { createApp } from 'vue'
+import { IonicVue as ionic } from '@ionic/vue'
 import router from './router'
 import AppVue from './app.vue'
 import './styles'
