@@ -9,9 +9,9 @@ import {
   IonItem,
 } from '@ionic/vue'
 
-import usePhoneNumbersStore from '@/stores/free/phone-numbers'
+import useStore from '@/stores/free/phone-numbers'
 
-const { phoneNumbers, loadPhoneNumbers } = $(usePhoneNumbersStore())
+const { phoneNumbers, loadPhoneNumbers } = $(useStore())
 
 loadPhoneNumbers()
 </script>
@@ -30,7 +30,7 @@ loadPhoneNumbers()
           phoneNumber,
           activatedAt
         } of phoneNumbers">
-          <IonItem>
+          <IonItem :routerLink="`/free/messages/${phoneNumber}`">
             <div class="w-full flex justify-between">
               <div>{{ phoneNumber }}</div>
               <div>{{ activatedAt }}</div>

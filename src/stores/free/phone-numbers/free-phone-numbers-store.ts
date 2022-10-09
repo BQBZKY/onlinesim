@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
 
-export interface PhoneNumber {
+interface PhoneNumber {
   phoneNumber: string
+  callingCode: string
   activatedAt: string
 }
 
@@ -13,6 +14,7 @@ export default defineStore('free/phone-numbers', () => {
       numbers: {
         full_number: string
         data_humans: string
+        country: number
       }[]
     }
 
@@ -22,9 +24,11 @@ export default defineStore('free/phone-numbers', () => {
     phoneNumbers = responseData.numbers.map(({
       full_number,
       data_humans,
+      country: codeInt,
     }) => ({
       phoneNumber: full_number,
       activatedAt: data_humans,
+      callingCode: `+${codeInt}`
     }))
   }
 

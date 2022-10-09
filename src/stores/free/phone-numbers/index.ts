@@ -1,4 +1,1 @@
-export { default,
-  type PhoneNumber,
-  type PhoneNumber as FreePhoneNumber,
-} from './free-phone-numbers-store'
+export { default } from './free-phone-numbers-store'
