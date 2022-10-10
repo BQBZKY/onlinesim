@@ -8,6 +8,10 @@ import {
   IonList,
   IonItem,
 
+  IonRefresher,
+  IonRefresherContent,
+  type RefresherCustomEvent,
+
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   type InfiniteScrollCustomEvent,
@@ -34,6 +38,11 @@ loadMessages()
 
 let enabledInfiniteScroll = $ref(true)
 
+async function handleRefresher(event: RefresherCustomEvent) {
+  await loadMessages()
+  event.target.complete()
+}
+
 async function handleInfiniteScroll(event: InfiniteScrollCustomEvent) {
   await loadMoreMessages()
   event.target.complete()
@@ -53,6 +62,10 @@ async function handleInfiniteScroll(event: InfiniteScrollCustomEvent) {
     </IonHeader>
 
     <IonContent>
+      <IonRefresher slot="fixed" @ionRefresh="handleRefresher">
+        <IonRefresherContent />
+      </IonRefresher>
+
       <IonList v-if="messages">
         <IonItem v-for="{
           message,
