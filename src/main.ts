@@ -10,7 +10,9 @@ const pinia = createPinia()
 const app = createApp(AppVue)
   .use(router)
   .use(pinia)
-  .use(ionic)
+  .use(ionic, {
+    mode: 'ios'
+  })
 
 router.isReady().then(() => {
   app.mount('#app')
