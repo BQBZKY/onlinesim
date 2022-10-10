@@ -3,19 +3,25 @@ import Service from '@/services/free/phone-numbers'
 
 interface PhoneNumber {
   phoneNumber: string
-  callingCode: string
   activatedAt: string
 }
 
-export default defineStore('free/phone-numbers', () => {
-  let phoneNumbers = $shallowRef<PhoneNumber[] | undefined>()
+interface PhoneNumberGroup {
+  country: string
+  countryCode: string
+  callingCode: string
+  phoneNumbers: PhoneNumber[]
+}
 
-  async function loadPhoneNumbers() {
-    phoneNumbers = await Service.getPhoneNumbers()
+export default defineStore('free/phone-numbers', () => {
+  let phoneNumberGroups = $shallowRef<PhoneNumberGroup[] | undefined>()
+
+  async function loadPhoneNumberGroups() {
+    phoneNumberGroups = await Service.getPhoneNumberGroups()
   }
 
   return $$({
-    phoneNumbers,
-    loadPhoneNumbers,
+    phoneNumberGroups,
+    loadPhoneNumberGroups,
   })
 })
