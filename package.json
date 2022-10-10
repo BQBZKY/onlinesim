@@ -4,8 +4,10 @@
   "dependencies": {
     "@ionic/vue": "^6.3.0",
     "@ionic/vue-router": "^6.3.0",
+    "@types/lodash": "^4.14.186",
     "@vitejs/plugin-vue": "^3.0.3",
     "autoprefixer": "^10.4.12",
+    "lodash": "^4.17.21",
     "pinia": "^2.0.23",
     "postcss": "^8.4.17",
     "tailwindcss": "^3.1.8",

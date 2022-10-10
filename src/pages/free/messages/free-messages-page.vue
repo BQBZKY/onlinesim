@@ -7,6 +7,10 @@ import {
   IonContent,
   IonList,
   IonItem,
+
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
+  type InfiniteScrollCustomEvent,
 } from '@ionic/vue'
 
 import { useRoute } from 'vue-router'
@@ -19,9 +23,23 @@ let { phoneNumberParam } = $(store)
 
 phoneNumberParam = route.params.phoneNumber as string
 
-const { messages, loadMessages } = $(store)
+const {
+  messages,
+  cursor,
+  loadMessages,
+  loadMoreMessages
+} = $(store)
 
 loadMessages()
+
+let enabledInfiniteScroll = $ref(true)
+
+async function handleInfiniteScroll(event: InfiniteScrollCustomEvent) {
+  await loadMoreMessages()
+  event.target.complete()
+
+  if (cursor === 0) enabledInfiniteScroll = false
+}
 </script>
 
 <template>
@@ -50,6 +68,12 @@ loadMessages()
           </div>
         </IonItem>
       </IonList>
+
+      <IonInfiniteScroll
+        :disabled="!enabledInfiniteScroll"
+        @ionInfinite="handleInfiniteScroll">
+        <IonInfiniteScrollContent />
+      </IonInfiniteScroll>
     </IonContent>
   </IonPage>
 </template>
